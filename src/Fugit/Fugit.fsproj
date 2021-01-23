@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="Fugit.fs" />
+        <Compile Include="Months.fs" />
+        <Compile Include="Shorthand.fs" />
+    </ItemGroup>
+    
+</Project>
