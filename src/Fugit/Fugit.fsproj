@@ -8,7 +8,7 @@
         <Description>An F# library for syntactically nice construction of DateTime and TimeSpan objects.</Description>
         <Copyright> GPL-3.0 License</Copyright>
         <PackageProjectUrl>https://github.com/Jlobblet/Fugit</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/Jlobblet/Fugit/blob/main/LICENSE</PackageLicenseUrl>
+        <PackageLicense>https://github.com/Jlobblet/Fugit/blob/main/LICENSE</PackageLicense>
         <RepositoryUrl>https://github.com/Jlobblet/Fugit</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>F#;FSharp;functional programming;time;date;datetime</PackageTags>
