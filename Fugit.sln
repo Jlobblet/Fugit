@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Fugit", "Fugit\Fugit.fsproj", "{D8469490-4BF5-4965-BDC8-391BCD6A4AC4}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Fugit", "src\Fugit\Fugit.fsproj", "{D8469490-4BF5-4965-BDC8-391BCD6A4AC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
