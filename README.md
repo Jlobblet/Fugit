@@ -1,5 +1,33 @@
 # Fugit
 
-An F# library for syntactically nice construction of DateTime and TimeSpan objects.
-_Tempus fugit_
+An F# library for syntactically nice construction of DateTime and TimeSpan objects.  
+_Tempus fugit._
 
+## Overview
+
+Fugit provides functions that make code dealing with DateTime and TimeSpan objects nicer to work with.
+```f#
+oneDay |> ago
+2 |> weeks |> before (January 23 2021)
+every oneHour |> since (5 |> hours |> ago)
+if input |> isAfter (52 |> weeks |> ago) then 
+    ...
+```
+
+## Installation
+
+Fugit is available on NuGet at [https://www.nuget.org/packages/Fugit/](https://www.nuget.org/packages/Fugit/).
+
+## Documentation
+
+Proper documentation is in progress!
+In the meantime, most of the code is documented and fairly straightforward.
+
+## Contributing
+
+Pull requests are very welcome!
+Code is formatted with [Fantomas](https://github.com/fsprojects/fantomas).
+
+## License
+
+Fugit is licensed under the GPL-3.0 license. You can read it [here](LICENSE).
