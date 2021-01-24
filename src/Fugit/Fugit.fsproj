@@ -3,12 +3,14 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>Fugit</PackageId>
+        <PackageTitle>Fugit</PackageTitle>
         <PackageVersion>0.1.0</PackageVersion>
         <Authors>Jlobblet</Authors>
         <Description>An F# library for syntactically nice construction of DateTime and TimeSpan objects.</Description>
         <Copyright> GPL-3.0 License</Copyright>
         <PackageProjectUrl>https://github.com/Jlobblet/Fugit</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/Jlobblet/Fugit/blob/main/LICENSE</PackageLicenseUrl>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <RepositoryUrl>https://github.com/Jlobblet/Fugit</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>F#;FSharp;functional programming;time;date;datetime</PackageTags>
@@ -18,6 +20,10 @@
         <Compile Include="Fugit.fs" />
         <Compile Include="Months.fs" />
         <Compile Include="Shorthand.fs" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <None Include="../../LICENSE" Pack="true" Visible="false" PackagePath=""/>
     </ItemGroup>
     
 </Project>
