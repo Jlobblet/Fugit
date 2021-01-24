@@ -91,6 +91,22 @@ let between period (Frequency freq) =
 let since then' freq =
     freq |> between (then' |> and' (now ()))
 
+/// Create a PeriodBoundaries starting now and ending after the period passed
+/// Equivalent to between now () |> and' (period |> after (now ()))
+let theNext period =
+    let n = now ()
+    { start = n; end' = period |> after n }
+
+/// Create a PeriodBoundaries starting period before now and ending now
+/// Equivalent to between period |> before (now()) |> and' (now())
+let theLast period =
+    let n = now ()
+    { start = period |> before n; end' = n }
+
+/// Wrapper for between, intended to be used with theNext and theLast
+/// Example: every (5 |> minutes) |> in' (theLast hour)
+let in' = between
+
 /// Return whether a DateTime is after period.start and before period.end', inclusive of the boundaries.
 let isBetween period dateTime =
     dateTime |> isAfterOrEqual period.start
