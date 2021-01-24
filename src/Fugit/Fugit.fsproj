@@ -5,7 +5,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Fugit</PackageId>
         <PackageTitle>Fugit</PackageTitle>
-        <PackageVersion>0.1.0</PackageVersion>
+        <PackageVersion>0.2.0</PackageVersion>
         <Authors>Jlobblet</Authors>
         <Description>An F# library for syntactically nice construction of DateTime and TimeSpan objects.</Description>
         <Copyright> GPL-3.0 License</Copyright>
