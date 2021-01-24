@@ -1,5 +1,6 @@
 ﻿[<AutoOpen>]
 module Fugit.Fugit
+
 open System
 // TimeSpan constructors
 
@@ -9,7 +10,8 @@ let ticks numberTicks = TimeSpan(numberTicks)
 
 /// Construct a TimeSpan with a duration of milliseconds passed as argument.
 /// Equivalent to TimeSpan(0, 0, 0, 0, numberMilliseconds)
-let milliseconds numberMilliseconds = TimeSpan(0, 0, 0, 0, numberMilliseconds)
+let milliseconds numberMilliseconds =
+    TimeSpan(0, 0, 0, 0, numberMilliseconds)
 
 /// Construct a TimeSpan with a duration of seconds passed as argument.
 /// Equivalent to TimeSpan(0, 0, numberSeconds)
