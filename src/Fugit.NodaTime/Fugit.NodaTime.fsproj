@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>Fugit.NodaTime</PackageId>
+        <PackageTitle>Fugit.NodaTime</PackageTitle>
+        <PackageVersion>0.2.0</PackageVersion>
+        <Authors>Jlobblet</Authors>
+        <Description>An F# library for syntactically nice construction of DateTime and TimeSpan objects, backed by NodaTime.</Description>
+        <Copyright> GPL-3.0 License</Copyright>
+        <PackageProjectUrl>https://github.com/Jlobblet/Fugit</PackageProjectUrl>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <RepositoryUrl>https://github.com/Jlobblet/Fugit</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>F#;FSharp;functional programming;time;date;datetime</PackageTags>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="../../LICENSE" Pack="true" Visible="false" PackagePath="" />
+        <Compile Include="Fugit.fs" />
+        <Compile Include="Months.fs" />
+        <Compile Include="Shorthand.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="NodaTime" Version="3.0.4" />
+    </ItemGroup>
+
+</Project>

@@ -16,12 +16,21 @@ if input |> isAfter (52 |> weeks |> ago) then
 
 ## Installation
 
-Fugit is available on NuGet at [https://www.nuget.org/packages/Fugit/](https://www.nuget.org/packages/Fugit/).
+Fugit is available on NuGet at [https://www.nuget.org/packages/Fugit/](https://www.nuget.org/packages/Fugit/).  
+Fugit.NodaTime is available on NuGet at [https://www.nuget.org/packages/Fugit.NodaTime/](https://www.nuget.org/packages/Fugit/).
 
 ## Documentation
 
 Proper documentation is in progress!
 In the meantime, most of the code is documented and fairly straightforward.
+
+## Differences between Fugit and Fugit.NodaTime
+
+While I have strived my best to make the two libraries as similar as possible, there are a few differences:
+
+- Some Fugit.NodaTime constructors use `int64`, whereas all Fugit constructors use `int`
+- Fugit.NodaTime allows dependency injection on functions that rely on the current time, Fugit does not.
+
 
 ## Contributing
 
