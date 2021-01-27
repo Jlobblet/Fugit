@@ -2,8 +2,7 @@ module Fugit.NodaTime.Months
 
 open NodaTime
 
-let private month m d y =
-    Instant.FromUtc(y, m, d, 0, 0)
+let private month m d y = LocalDate(y, m, d)
 
 let January day year = month 1 day year
 let January' year day = month 1 day year

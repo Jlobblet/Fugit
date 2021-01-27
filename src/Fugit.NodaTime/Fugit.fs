@@ -10,7 +10,8 @@ let ticks (numberTicks: int64) = Duration.FromTicks(numberTicks)
 
 /// Construct a Duration with a duration of milliseconds passed as argument.
 /// Equivalent to Duration.FromMilliseconds(numberMilliseconds)
-let milliseconds (numberMilliseconds: int64) = Duration.FromMilliseconds(numberMilliseconds)
+let milliseconds (numberMilliseconds: int64) =
+    Duration.FromMilliseconds(numberMilliseconds)
 
 /// Construct a Duration with a duration of seconds passed as argument.
 /// Equivalent to Duration.FromSeconds(numberSeconds)
@@ -77,6 +78,30 @@ let isBetween (interval: Interval) instant =
     instant |> isAfterOrEqual interval.Start
     && instant |> isBeforeOrEqual interval.End
 
+// Days
+
+type DayOfWeek =
+    | Monday
+    | Tuesday
+    | Wednesday
+    | Thursday
+    | Friday
+    | Saturday
+    | Sunday
+    static member toIsoDayOfWeek =
+        function
+        | Monday -> IsoDayOfWeek.Monday
+        | Tuesday -> IsoDayOfWeek.Tuesday
+        | Wednesday -> IsoDayOfWeek.Wednesday
+        | Thursday -> IsoDayOfWeek.Thursday
+        | Friday -> IsoDayOfWeek.Friday
+        | Saturday -> IsoDayOfWeek.Saturday
+        | Sunday -> IsoDayOfWeek.Sunday
+
+    member this.IsoDayOfWeek = DayOfWeek.toIsoDayOfWeek this
+
+type Placeholder = { n: int; day: DayOfWeek }
+
 // Clock Dependent words
 
 /// Class to provide methods that depend on the clock to determine.
@@ -86,15 +111,18 @@ type ClockDependents(clock) =
     /// The IClock being used by this instance
     member this.clock: IClock = clock
     /// Wrapper for this.clock.GetCurrentInstant
-    member this.now () = this.clock.GetCurrentInstant()
+    member this.now() = this.clock.GetCurrentInstant()
     /// Equivalent to before (this.now())
     member this.ago = before (this.now ())
     /// Equivalent to freq |> between (then' and (this.now()))
-    member this.since then' freq = freq |> between (then' |> and' (this.now()))
+    member this.since then' freq =
+        freq |> between (then' |> and' (this.now ()))
     /// Construct an Interval starting now and ending duration after now
-    member this.theNext duration = Interval(this.now(), duration |> after (this.now()))
+    member this.theNext duration =
+        Interval(this.now (), duration |> after (this.now ()))
     /// Construct an Interval starting duration before now and ending now
-    member this.theLast duration = Interval(duration |> before (this.now()), this.now())
+    member this.theLast duration =
+        Interval(duration |> before (this.now ()), this.now ())
 
 // Defaults use the system clock, but allows for dependency injection
 let SystemClockDependents = ClockDependents(SystemClock.Instance)
