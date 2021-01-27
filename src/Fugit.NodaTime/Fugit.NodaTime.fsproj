@@ -21,6 +21,7 @@
         <Compile Include="Fugit.fs" />
         <Compile Include="Months.fs" />
         <Compile Include="Shorthand.fs" />
+        <Compile Include="DayOfWeek.fs" />
     </ItemGroup>
 
     <ItemGroup>

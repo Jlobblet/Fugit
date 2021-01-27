@@ -24,6 +24,7 @@
     
     <ItemGroup>
         <None Include="../../LICENSE" Pack="true" Visible="false" PackagePath="" />
+        <Compile Include="DayOfWeek.fs" />
     </ItemGroup>
     
 </Project>
