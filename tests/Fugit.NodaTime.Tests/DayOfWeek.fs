@@ -7,8 +7,7 @@ open Fugit.NodaTime.Shorthand
 open Fugit.NodaTime.Months
 
 let flip f b a = f a b
-let localDateToInstant (d: LocalDate) =
-    d.AtMidnight().InUtc().ToInstant()
+let localDateToInstant (d: LocalDate) = d.AtMidnight().InUtc().ToInstant()
 
 [<Fact>]
 let ``check the first Tuesday before 28 January 2021 is 26 January 2021`` () =
@@ -53,7 +52,11 @@ let ``check that the first day of the week after or equal that day is the same d
 
     let input =
         [ 0 .. 1000 ]
-        |> List.map (fun n -> n |> days |> after (January 28 2000 |> localDateToInstant))
+        |> List.map
+            (fun n ->
+                n
+                |> days
+                |> after (January 28 2000 |> localDateToInstant))
 
 
     let expected = input
@@ -71,7 +74,11 @@ let ``check that the first day of the week after or equal that day is the same d
 let ``check that the first day the week after that day is one week later`` () =
     let input =
         [ 0 .. 1000 ]
-        |> List.map (fun n -> n |> days |> after (January 28 2000 |> localDateToInstant))
+        |> List.map
+            (fun n ->
+                n
+                |> days
+                |> after (January 28 2000 |> localDateToInstant))
 
     let expected =
         input |> List.map (oneWeek |> (flip after))
