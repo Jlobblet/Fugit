@@ -10,8 +10,11 @@ Fugit provides functions that make code dealing with DateTime and TimeSpan objec
 oneDay |> ago
 2 |> weeks |> before (January 23 2021)
 every oneHour |> since (5 |> hours |> ago)
+// Or, equivalently
+every oneHour |> in' (theLast (5 |> hours))
 if input |> isAfter (52 |> weeks |> ago) then 
-    ...
+    // Relative days of the week
+    theThird Monday |> after (today())
 ```
 
 ## Installation
