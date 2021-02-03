@@ -18,7 +18,7 @@ open Fake.Core.TargetOperators
 Target.initEnvironment ()
 
 [<Literal>]
-let NugetDownload = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
+let NugetSource = "https://api.nuget.org/v3/index.json"
 
 let (|NullOrWhitespaceString|ValueString|) (str: string) =
     if String.isNullOrWhiteSpace (str) then
@@ -120,6 +120,17 @@ Target.create "Create NuGet packages"
             NoLogo = true
             OutputPath = Some "NuGet"
              }))
+    
+Target.create "Push NuGet packages"
+<| fun _ ->
+    let apiKey = tryGetEnvironmentVariable "NUGET_KEY"
+    
+    !! "NuGet/Fugit.*.nupkg"
+    |> Seq.iter (DotNet.nugetPush (fun p ->
+        {p with
+            PushParams = { p.PushParams with
+                             ApiKey = apiKey
+                             Source = Some NugetSource }}))
 
 // Combinations
 
@@ -136,7 +147,7 @@ Target.create "Deploy" ignore
 
 "All" <== [ "Check F# formatting"; "Run tests" ]
 
-"All" ==> "Create NuGet packages"
+"All" ==> "Create NuGet packages" ==> "Push NuGet packages"
 
 // Run
 
