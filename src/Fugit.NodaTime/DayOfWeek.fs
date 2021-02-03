@@ -56,7 +56,7 @@ type ZoneDependents(zone) =
     /// The DateTimeZone being used by this instance.
     member this.zone: DateTimeZone = zone
 
-    /// Calculate the nth day of the week before or equal to the given instant in a time zone.
+    /// Calculate the nth occurence of a given day of the week before or equal to the given instant in a time zone.
     /// For example, theFirst Tuesday |> beforeOrEqual (today ())
     /// will return the first Tuesday between 0 and 6 days ago.
     /// theSecond Tuesday |> beforeOrEqual (today ())
@@ -74,7 +74,7 @@ type ZoneDependents(zone) =
         + (dayDifference |> days)
         |> before instant
 
-    /// Calculate the nth day of the week before the given instant in a time zone.
+    /// Calculate the nth occurence of a given day of the week before the given instant in a time zone.
     /// For example, theFirst Tuesday |> before (today ())
     /// will return the first Tuesday between 1 and 7 days ago.
     /// theSecond Tuesday |> before (today ())
@@ -82,6 +82,11 @@ type ZoneDependents(zone) =
     member this.before (instant: Instant) nthDay =
         this.beforeOrEqual (oneDay |> before instant) nthDay
 
+    /// Calculate the nth occurence of a given day of the week after or equal to the given instant in a time zone.
+    /// For example, theFirst Tuesday |> afterOrEqual (today ())
+    /// will return the first Tuesday between 0 and 6 days in the future.
+    /// theSecond Tuesday |> afterOrEqual (today ())
+    /// will return one week after the first Tuesday between 0 and 6 days in the future.
     member this.afterOrEqual (instant: Instant) nthDay =
         let initialDay =
             instant.InZone(this.zone).DayOfWeek |> unbox<int>
@@ -95,13 +100,23 @@ type ZoneDependents(zone) =
         + (dayDifference |> days)
         |> after instant
 
+    /// Calculate the nth occurence of a given day of the week after to the given instant in a time zone.
+    /// For example, theFirst Tuesday |> after (today ())
+    /// will return the first Tuesday between 1 and 7 days in the future.
+    /// theSecond Tuesday |> afterOrEqual (today ())
+    /// will return one week after the first Tuesday between 1 and 7 days in the future.
     member this.after (instant: Instant) nthDay =
         this.afterOrEqual (oneDay |> after instant) nthDay
 
+/// Default implementation of ZoneDependents using the system default time zone
 let LocalZoneDependents =
     ZoneDependents(DateTimeZoneProviders.Bcl.GetSystemDefault())
 
+/// LocalZoneDependents.beforeOrEqual using the system time zone
 let beforeOrEqual = LocalZoneDependents.beforeOrEqual
+/// LocalZoneDependents.before using the system time zone
 let before = LocalZoneDependents.before
+/// LocalZoneDependents.after using the system time zone
 let after = LocalZoneDependents.after
+/// LocalZoneDependents.afterOrEqual using the system time zone
 let afterOrEqual = LocalZoneDependents.afterOrEqual

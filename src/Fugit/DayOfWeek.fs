@@ -49,7 +49,7 @@ let theNinth = theNth 9
 /// Partially applied theNth with N = 10
 let theTenth = theNth 10
 
-/// Calculate the nth day of the week before or equal to the given date.
+/// Calculate the nth occurence of a given day of the week before or equal to the given date.
 /// For example, theFirst Tuesday |> beforeOrEqual (today ())
 /// will return the first Tuesday between 0 and 6 days ago.
 /// theSecond Tuesday |> beforeOrEqual (today ())
@@ -65,7 +65,7 @@ let beforeOrEqual (date: DateTime) nthDay =
     + (dayDifference |> days)
     |> before date
 
-/// Calculate the nth day of the week before the given date.
+/// Calculate the nth occurence of a given day of the week before the given date.
 /// For example, theFirst Tuesday |> before (today ())
 /// will return the first Tuesday between 1 and 7 days ago.
 /// theSecond Tuesday |> before (today ())
@@ -73,7 +73,7 @@ let beforeOrEqual (date: DateTime) nthDay =
 let before (date: DateTime) nthDay =
     beforeOrEqual (oneDay |> before date) nthDay
 
-/// Calculate the nth day of the week after or equal to the given date.
+/// Calculate the nth occurence of a given day of the week after or equal to the given date.
 /// For example, theFirst Tuesday |> afterOrEqual (today ())
 /// will return the first Tuesday between 0 and 6 days in the future.
 /// theSecond Tuesday |> beforeOrEqual (today ())
@@ -89,7 +89,7 @@ let afterOrEqual (date: DateTime) nthDay =
     + (dayDifference |> days)
     |> after date
 
-/// Calculate the nth day of the week after to the given date.
+/// Calculate the nth occurence of a given day of the week after to the given date.
 /// For example, theFirst Tuesday |> afterOrEqual (today ())
 /// will return the first Tuesday between 1 and 7 days in the future.
 /// theSecond Tuesday |> beforeOrEqual (today ())
