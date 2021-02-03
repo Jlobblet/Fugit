@@ -17,4 +17,4 @@ jobs:
         with:
           dotnet-version: 5.0.102
       - name: Create packages
-        run: sudo bash fake.sh build -t "Push NuGet packages"
+        run: sudo bash fake.sh build -t Deploy

@@ -162,6 +162,7 @@ Target.create "Deploy" ignore
 "All"
 ==> "Create NuGet packages"
 ==> "Push NuGet packages"
+==> "Deploy"
 
 // Run
 
