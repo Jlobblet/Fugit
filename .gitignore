@@ -347,3 +347,6 @@ MigrationBackup/
 
 # Rider
 .idea/
+
+# CI directory
+NuGet/
