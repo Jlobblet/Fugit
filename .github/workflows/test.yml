@@ -1,0 +1,15 @@
+name: Run tests
+on:
+  [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.102
+      - name: Run tests
+        run: sudo bash build.sh -t "Run tests"
