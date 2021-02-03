@@ -21,10 +21,7 @@ Target.initEnvironment ()
 let NugetSource = "https://api.nuget.org/v3/index.json"
 
 let (|NullOrWhitespaceString|ValueString|) (str: string) =
-    if String.isNullOrWhiteSpace (str) then
-        NullOrWhitespaceString
-    else
-        ValueString str
+    if String.isNullOrWhiteSpace (str) then NullOrWhitespaceString else ValueString str
 
 let tryGetEnvironmentVariable name =
     let tryString =
@@ -86,51 +83,66 @@ Target.create "Restore"
 Target.create "Build"
 <| fun _ ->
     !! "src/**/*.*proj"
-    |> Seq.iter (DotNet.build (fun p ->
-        { p with
-            Configuration = DotNet.BuildConfiguration.Release
-            NoLogo = true
-            NoRestore = true}))
+    |> Seq.iter (
+        DotNet.build
+            (fun o ->
+                { o with
+                      Configuration = DotNet.BuildConfiguration.Release
+                      NoLogo = true
+                      NoRestore = true })
+    )
 
 Target.create "Build tests"
 <| fun _ ->
     !! "tests/**/*.*proj"
-    |> Seq.iter (DotNet.build (fun p ->
-        { p with
-            NoLogo = true
-            NoRestore = true}))
+    |> Seq.iter (
+        DotNet.build
+            (fun o ->
+                { o with
+                      NoLogo = true
+                      NoRestore = true })
+    )
 
 // Running tests
 
 Target.create "Run tests"
 <| fun _ ->
     !! "tests/**/*.*proj"
-    |> Seq.iter (DotNet.test (fun p ->
-        { p with
-            NoLogo = true
-            NoRestore = true}))
+    |> Seq.iter (
+        DotNet.test
+            (fun o ->
+                { o with
+                      NoLogo = true
+                      NoRestore = true })
+    )
 
 // NuGet
 
 Target.create "Create NuGet packages"
 <| fun _ ->
     !! "src/**/*.*proj"
-    |> Seq.iter (DotNet.pack (fun p ->
-        { p with
-            NoLogo = true
-            OutputPath = Some "NuGet"
-             }))
-    
+    |> Seq.iter (
+        DotNet.pack
+            (fun o ->
+                { o with
+                      NoLogo = true
+                      OutputPath = Some "NuGet" })
+    )
+
 Target.create "Push NuGet packages"
 <| fun _ ->
     let apiKey = tryGetEnvironmentVariable "NUGET_KEY"
-    
+
     !! "NuGet/Fugit.*.nupkg"
-    |> Seq.iter (DotNet.nugetPush (fun p ->
-        {p with
-            PushParams = { p.PushParams with
-                             ApiKey = apiKey
-                             Source = Some NugetSource }}))
+    |> Seq.iter (
+        DotNet.nugetPush
+            (fun o ->
+                { o with
+                      PushParams =
+                          { o.PushParams with
+                                ApiKey = apiKey
+                                Source = Some NugetSource } })
+    )
 
 // Combinations
 
@@ -147,7 +159,9 @@ Target.create "Deploy" ignore
 
 "All" <== [ "Check F# formatting"; "Run tests" ]
 
-"All" ==> "Create NuGet packages" ==> "Push NuGet packages"
+"All"
+==> "Create NuGet packages"
+==> "Push NuGet packages"
 
 // Run
 
