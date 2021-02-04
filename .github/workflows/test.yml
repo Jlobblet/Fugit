@@ -23,4 +23,4 @@ jobs:
         with:
           dotnet-version: 5.0.102
       - name: Run tests
-        run: sudo bash fake.sh build -t All
+        run: bash fake.sh build -t All
