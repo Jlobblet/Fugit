@@ -4,7 +4,7 @@
         <TargetFramework>netstandard2.1</TargetFramework>
         <PackageId>Fugit.NodaTime</PackageId>
         <PackageTitle>Fugit.NodaTime</PackageTitle>
-        <PackageVersion>0.3.0</PackageVersion>
+        <PackageVersion>0.4.0</PackageVersion>
         <Authors>Jlobblet</Authors>
         <Description>An F# library for syntactically nice construction of DateTime and TimeSpan objects, backed by NodaTime.</Description>
         <Copyright>2021</Copyright>
