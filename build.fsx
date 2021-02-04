@@ -131,7 +131,7 @@ Target.create "Create NuGet packages"
 
 Target.create "Push NuGet packages"
 <| fun _ ->
-    let apiKey = tryGetEnvironmentVariable "NUGET_KEY"
+    let apiKey = getEnvironmentVariable "NUGET_KEY"
 
     !! "NuGet/Fugit.*.nupkg"
     |> Seq.iter (
@@ -140,7 +140,7 @@ Target.create "Push NuGet packages"
                 { o with
                       PushParams =
                           { o.PushParams with
-                                ApiKey = apiKey
+                                ApiKey = Some apiKey
                                 Source = Some NugetSource } })
     )
 
