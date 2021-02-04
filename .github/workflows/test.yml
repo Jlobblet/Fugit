@@ -19,4 +19,4 @@ jobs:
         with:
           dotnet-version: 5.0.102
       - name: Run tests
-        run: sudo bash fake.sh build -t "Run tests"
+        run: sudo bash fake.sh build -t All
