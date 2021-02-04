@@ -19,3 +19,5 @@ jobs:
           dotnet-version: 5.0.102
       - name: Create packages
         run: sudo bash fake.sh build -t Deploy
+        env:
+          NUGET_KEY: ${{ secrets.NUGET_KEY }}
