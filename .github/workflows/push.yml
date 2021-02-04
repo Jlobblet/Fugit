@@ -12,10 +12,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Setup .NET SDK
+      - name: Setup .NET SDK 5.0
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 5.0.102
+          dotnet-version: '5.0.*'
+      - name: Setup .NET SDK 3.1
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.*'
       - name: Create packages
         run: bash fake.sh build -t Deploy
         env:
