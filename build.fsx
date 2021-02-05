@@ -15,13 +15,14 @@ open Fake.IO
 open Fake.IO.Globbing.Operators
 open Fake.Core.TargetOperators
 
-Target.initEnvironment ()
+[<Literal>]
+let solution = "Fugit.sln"
 
 [<Literal>]
 let NugetSource = "https://api.nuget.org/v3/index.json"
 
 let (|NullOrWhitespaceString|ValueString|) (str: string) =
-    if String.isNullOrWhiteSpace (str) then NullOrWhitespaceString else ValueString str
+    if String.isNullOrWhiteSpace str then NullOrWhitespaceString else ValueString str
 
 let tryGetEnvironmentVariable name =
     let tryString =
@@ -37,10 +38,12 @@ let tryGetEnvironmentVariable name =
 
 let getEnvironmentVariable name =
     match tryGetEnvironmentVariable name with
-    | None -> failwith $"Could not find environment variable {name}"
+    | None -> failwith $"Could not find environment variable %s{name}"
     | Some var -> var
 
-let solution = "Fugit.sln"
+// Targets
+
+Target.initEnvironment ()
 
 // Linting
 
