@@ -22,9 +22,9 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
-     - name: Setup .NET SDK 3.1
-       uses: actions/setup-dotnet@v1
-       with:
-         dotnet-version: 3.1.x
+      - name: Setup .NET SDK 3.1
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
       - name: Run tests
         run: bash fake.sh build -t All
