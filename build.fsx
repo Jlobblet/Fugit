@@ -65,6 +65,21 @@ Target.create "Check F# formatting"
     else
         Trace.log $"Errors while formatting: {result.Errors}"
 
+Target.create "Format F# code"
+<| fun _ ->
+    let formattedFiles =
+        !! "**/*.fs"
+        -- "**/bin/**/*.fs"
+        -- "**/obj/**/*.fs"
+        |> FakeHelpers.formatCode
+        |> Async.RunSynchronously
+
+    if not << Array.isEmpty <| formattedFiles then
+        Trace.log "Formatted files:"
+        formattedFiles |> Array.iter (Trace.logfn "%s")
+    else
+        Trace.log "No files needed formatting"
+
 // Cleaning
 
 Target.create "Clean"
@@ -157,6 +172,10 @@ Target.create "Deploy" ignore
 "Clean" ==> "Restore" ==> "Build"
 
 "Build" ==> "Run tests"
+
+"Clean"
+?=> "Format F# code"
+?=> "Check F# formatting"
 
 "Check F# formatting" ?=> "Build" ?=> "Run tests"
 
